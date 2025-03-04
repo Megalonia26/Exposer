@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {% if searched %}
+        <title>{{ searched }}</title>
+        {% else %}
+        <title>Produtcs</title>
+    {% endif %}
+{% endblock title %}
+
+<h1>{{ filters }}</h1>
+
+
+{% block content %}
+<div class="product-filter">
+    {% if searched %}
+            <h1>{{ searched_count }} Résult found for : "{{ searched }}"</h1>
+        {% else %}
+            <h1>Aliment A la mode : </h1>
+    {% endif %}
+    <ul class="filters">
+        <li><a href="{% url "all-product" %}">Touts</a></li>
+        {% for filter in filters %}
+        <li><a href="{{ filter.id }}">{{ filter.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <select name="filters-select" id="filters">
+        <option value="all">Touts</option>
+        {% for filter in filters %}
+            <option value="{{ filter.name }}">{{ filter.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="product-container">
+    {% if searched %}
+        {% for product in products %}
+        <div class="product" id="{{ product.category }}">
+            {% if product.was_published_recently %}
+                <p class="product-badge">New</p>
+            {% endif %}
+            <div class="product-img">
+                <img src="{{ product.img.url }}" alt="{{ product.name }}">
+            </div>
+            <ul class="choices">
+                <li>
+                    <a href="{% url "view-product" product.id %}"><i class="fa fa-search"></i></a>
+                </li>
+                <li><i class="fa fa-heart"></i></li>
+                <li><i class="fa fa-shopping-cart"></i></li>
+            </ul>
+            <span class="product-name">{{ product.name }}</span>
+            <p class="price">{{ product.price }}Ar {% if product.discount > 1 %}<del class="discount">{{ product.discount }}</del>{% endif %}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        {% for product in products %}
+        <div class="product" id="{{ product.id }}" data-id="{{ product.category }}">
+            {% if product.was_published_recently %}
+                <p class="product-badge">New</p>
+            {% endif %}
+                <div class="product-img">
+                    <img src="{{ product.img.url }}" alt="{{ product.name }}">
+                </div>
+                <ul class="choices">
+                    <li><a href="{% url "view-product" product.id %}"><i class="fa fa-search"></i></a></li>
+                    <li><i class="fa fa-heart"></i></li>
+                    <li><i class="fa fa-shopping-cart"></i></li>
+                </ul>
+                <span class="product-name">{{ product.name }}</span>
+                <p class="price">{{ product.price }}Ar {% if product.discount > 1 %}<del class="discount">{{ product.discount}}</del>{% endif %}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

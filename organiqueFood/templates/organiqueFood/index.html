@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% for blog in blogs %}
+    <p>{{ blog.title }}</p>
+{% endfor %}
+
+{% block content %}
+    <div class="organique-background">
+        <a href="javascript:void(0);" class="icon">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="organique-form">
+            <div class="title">
+                <h3>ORGANIQUE FOOD</h3>
+            </div>
+            <div class="biographie" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                <h2>
+                    A la recherche de la nouriture biologique fraîche
+                </h2>
+            </div>
+            <button class="bye-btn">ACHETEZ</button>
+        </div>
+    </div>
+
+    <div class="our-benefice">
+        <div class="benefice">
+            <i class="fa fa-truck delivery"></i>
+            <p>Livraison Gratuit</p>
+            <span>Livraison Gratuit dans touts les pays Africain</span>
+        </div>
+        <div class="benefice service">
+            <i class="fa fa-headset"></i>
+            <p>Support 24/7</p>
+            <span>Vous êtes assisté tout les jours</span>
+        </div>
+        <div class="benefice satisfactory">
+            <i class="fa fa-money-bill-transfer"></i>
+            <p>100% Satisfait</p>
+            <span>30 Jours pour revenir</span>
+        </div>
+        <div class="benefice security">
+            <i class="fa fa-check-circle"></i>
+            <p>Paiement securisé</p>
+            <span>Nous assurons une payment sécuriser</span>
+        </div>
+    </div>
+
+    <div class="recent-categories-container">
+        <h2>Catégories récent</h2>
+        <div class="categorie-container">
+
+            {% for category in categorys %}
+                <div class="categorie">
+                    <a href="{% url "by-category" category.name %} ">
+                        <div class="img-container">
+                            <img src="{{ category.img.url }}" alt="{{ category.name }}" srcset="">
+                        </div>
+                        <span>{{ category.name }}</span>
+                    </a>
+                </div>
+        {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="sold-product">
+        <div class="left-container">
+            <p class="discount">20% OFF</p>
+            <img src="{% static "media/image 28.jpg" %}" alt="">
+        </div>
+        <div class="midle-container">
+            <p class="name">Tomate</p>
+            <p class="price">$25.00 <del class="discount">$20.00</del></p>
+            <div class="product-info">
+                <span class="remaining">Disponible : 237</span>
+                <span class="sold">Vendue : 23</span>
+            </div>
+            <div class="bar">
+            </div>
+        </div>
+        <div class="right-container">
+            <img src="{% static "media/image 28.jpg" %}" alt="" srcset="">
+        </div>
+    </div>
+
+    <div class="product-filter">
+        <h1>Aliment à la mode</h1>
+        <ul class="filters">
+            <li>
+                <a href="{% url "all-product" %}">Touts</a>
+            </li>
+            {% for filter in filters %}
+                <li>
+                    <a href="{% url "by-category" filter.name %} ">{{ filter.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <select name="filters-select" id="filters">
+            <option value="all">Touts</option>
+            {% for filter in filters %}
+                <option value="{{ filter.name.lower }}">{{ filter.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    <div class="product-container">
+        {% for product in products %}
+        <div class="product" id="{{ product.category }}">
+            {% if product.was_published_recently %}
+                <p class="product-badge">New</p>
+            {% endif %}
+            <div class="product-img">
+                <img src="{{ product.img.url }}" alt="{{ product.name }}">
+            </div>
+            <ul class="choices">
+                <li>
+                    <a href="{% url "view-product" product.id %}"><i class="fa fa-search"></i></a>
+                </li>
+                <li>
+                    <a href="{% url "add" product.id %}" id="like-btn"><i class="fa fa-heart" style="color:red;"></i></a>
+                </li>
+                <li><i class="fa fa-shopping-cart"></i></li>
+            </ul>
+            <span class="product-name">{{ product.name }}</span>
+            <p class="price">{{ product.price }}Ar 
+                {% if product.discount %}
+                <del class="discount">{{ product.discount}}</del>
+                {% endif %}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="publicity">
+        <div class="publicity-title">
+            <h3>BLACK FRIDAYS !</h3>
+        </div>
+        <h2 class="publicity-content">50% DE REDUCTION POUR<br>
+            TOUTS LES PRODUITS VEGETAUX</h2>
+        <input type="button" class="publicity-btn" value="ACHETEZ MAINTENANT">
+    </div>
+
+    {% include "blog/blog.html" %}
+
+    <div class="partnair">
+        <div>
+            <a href="#"><i class="fa fa-leaf"></i>be.Leaf</a>
+        </div>
+        <div>
+            <a href="#"><i class="fa fa-leaf"></i>SweetLeaf</a>
+        </div>
+        <div>
+            <a href="#"><i class="fa fa-leaf"></i>OrganicLand</a>
+        </div>
+        <div>
+            <a href="#"><i class="fa fa-leaf"></i>TrueFoods</a>
+        </div>
+        <div class="organique-store">
+            <a href="#"><i class="fa fa-leaf"></i>Organique Store</a>
+        </div>
+        
+    </div>
+
+{% endblock content %}

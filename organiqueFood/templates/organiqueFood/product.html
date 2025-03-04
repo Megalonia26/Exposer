@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for message in messages %}
+        <di style="text-align: center;">
+            <h1>{{ message }}</h1>
+        </div>
+    {% endfor %}
+
+    <div style="text-align:center;">
+        <h1>Posted by :<a href="{% url "user-profiles" item.poster %}">@{{ item.poster }}<a /></h1>
+    </div>
+    <div id="{ item.id }" style="display: grid;grid-template-columns: 1fr 3fr 1fr;">
+        <div class="content">
+            <h3>Images</h3>
+            <img src="{{ item.img.url }}" width="150px"></img>
+        </div>
+        <div class="about" style="text-align: center;">
+            <h1>{{ item.name }} </h1>
+            <p>{{ item.price }}Ar</p>
+            <p>Liked By {{ item.likes.count }}</p>
+        </div>
+        <div class="descriptions">
+            <span>{{ item.created|timesince }} ago</span>
+            <p>{{ item.desctptions }}</p>
+        </div>
+    </div>
+{% endblock content %}

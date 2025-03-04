@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/fontawesome-free-6.7.2-web/css/all.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    {% block style %}<link rel="stylesheet" href="{% static "css/mediaquery.css" %}">{% endblock style %}
+    <script src="{% static "js/jquery-3.7.1.min.js" %}"></script>
+    {% block title %}<title>Food Organique</title>{% endblock title %}
+</head>
+<body>
+        
+    {% include "navbar.html" %}
+    
+    {% block content %}
+    
+    {% endblock content %}
+    
+    {% include "footer.html" %}
+
+    {% include "sidebar.html" %}
+    {% comment %} <script>
+        const likeButtons = document.querySelectorAll("like-btn")
+        likeButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const itemName = this.getAttribute("value")
+    
+                if (likedItems.has(itemName)) {
+                    button.style.color = "white"
+                } else {
+                    button.style.color = "red"
+                }
+            })
+        })
+    </script> {% endcomment %}
+    <script src="{% static "js/script.js" %}"></script>
+</body>
+
+</html>

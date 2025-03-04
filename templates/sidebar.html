@@ -1,0 +1,10 @@
+<div class="sidebar">
+    <h3>Liked Items (<span id="like-counter">{{ counter }}</span>) <button class="close-btn" style="float:right;background: none;border: none;">X</button></h3>
+    <ul id="liked-items" style="list-style: none; max-height: 200px; overflow-x: hidden;width: fit-content;">
+        {% comment %} {% for i in a %}
+            <li style="margin-top: 10px;">
+                <a href="product/{{ i.id }}" style="margin-right: 100px;">{{ i.name }}<i class="fa fa-trash" style="float: right;color: red;"></i></a>
+            </li>
+        {% endfor %} {% endcomment %}
+    </ul>
+</div>

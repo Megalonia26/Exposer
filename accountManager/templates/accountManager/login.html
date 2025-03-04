@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/account.css" %}">
+    <title>{% block title %}Login{% endblock title %}</title>
+</head>
+<body>
+    {% block content %}
+    {% for message in messages %}
+        <h1>{{ message }}</h1>
+    {% endfor %}
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Enter username">
+        
+        <label for="username">Password</label>
+        <input type="password" name="password" placeholder="Enter Pasword">
+
+        <p>Don't have an account ? sign-up <a href="{% url "user-registration" %}">here</a></p>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock content %}
+</body>
+</html>

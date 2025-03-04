@@ -1,0 +1,33 @@
+{% extends "accountManager/login.html" %}
+{% block title %}Register{% endblock title %}
+{% block content %}
+    {% for message in messages %}
+        <h1>{{ message }}</h1>
+    {% endfor %}
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="email-container">
+            <label for="email">Email : </label>
+            <input type="email" name="email" id="email" class="email" required>
+        </div>
+
+        <div class="username-container">
+            <label for="username">Username : </label>
+            <input type="text" name="username" id="username" class="username" required>
+        </div>
+
+        <div class="password-container">
+            <label for="password">Password : </label>
+            <input type="password" name="password" id="password" class="password" required>
+        </div>
+
+        <div class="password-container">
+            <label for="password1">Repeat Password : </label>
+            <input type="password" name="password1" id="password1" class="password" required>
+        </div>
+
+        <p>Already have an account ? Sign-In <a href="{% url "user-login" %}">Here</a></p>
+        <input type="submit" value="Submit" class="submit-btn">
+    </form>
+{% endblock content %}

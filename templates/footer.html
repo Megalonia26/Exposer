@@ -1,0 +1,56 @@
+<footer>
+    <div class="logo">
+        <h1><a href="/"><i class="fa fa-leaf"></i>Organique</a></h1>
+    </div>
+    <div class="footer-content">
+        <div class="about-us">
+            <p class="info">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+                Molestiae maxime, deleniti earum quibusdam
+                autem iste eligendi!
+            </p>
+            
+            <ul class="icons">
+                <li><i class="fab fa-facebook-f"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-youtube"></i></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url "all-product" %}">Product</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url "user-logout" %}">Lougout</a></li>
+                {% else %}
+                <li><a href="{% url "user-login" %}">Login</a></li>
+                {% endif %}
+            </ul>
+            <ul>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Condition</a></li>
+                <li><a href="#">Search Terms</a></li>
+                <li><a href="#">Order & Return</a></li>
+            </ul>
+        </div>
+        <div class="news-letter">
+            <h3>Newsletter</h3>
+            <div class="email-field">
+                <input type="email" name="email" id="email" class="email-bar" placeholder="Your email here"><br>
+                <input type="submit" value="SEND" class="send-btn">
+            </div>
+
+            <div class="payment-method">
+                <ul class="icons">
+                    <li><i class="fab fa-cc-paypal"></i></li>
+                    <li><i class="fab fa-cc-mastercard"></i></li>
+                    <li><i class="fab fa-cc-visa"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
